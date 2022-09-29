@@ -1,0 +1,36 @@
+{
+  "name": "social-scraper",
+  "version": "0.0.0",
+  "description": "Scraping data from social media accounts",
+  "main": "dist/server.js",
+  "repository": "https://github.com/Dev-Addict/social-scraper",
+  "author": "Dev-Addict(Aria Azadi Pour)",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "@types/express": "^4.17.14",
+    "@types/node": "^18.7.23",
+    "eslint": "8.22.0",
+    "express": "^4.18.1",
+    "typescript": "^4.8.4"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.38.1",
+    "@typescript-eslint/parser": "^5.38.1",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-promise": "^6.0.0",
+    "nodemon": "^2.0.20",
+    "prettier": "^2.7.1",
+    "rimraf": "^3.0.2",
+    "ts-node": "^10.9.1"
+  },
+  "scripts": {
+    "dev": "nodemon",
+    "build": "rimraf ./dist && tsc",
+    "start": "node ./dist/server.js"
+  }
+}
