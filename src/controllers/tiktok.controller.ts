@@ -26,7 +26,9 @@ export const validateGetUserDetails = checkSchema({
 export const getUserDetails = handle(async (req, res) => {
 	const {username} = req.params as unknown as GetUserDetailsParams;
 
-	const browser = await Puppeteer.launch();
+	const browser = await Puppeteer.launch({
+		args: ['--no-sandbox', '--disable-setuid-sandbox'],
+	});
 	const page = await browser.newPage();
 
 	await page.goto(`https://www.tiktok.com/@${username}`);
