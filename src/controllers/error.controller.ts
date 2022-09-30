@@ -35,6 +35,8 @@ export const handleError = (
 	res: Response,
 	_: NextFunction
 ) => {
+	console.log(err);
+
 	const compiledError = compileError(err);
 
 	res.status(compiledError.code).json({
