@@ -1,0 +1,23 @@
+version: '3.9'
+services:
+  dev:
+    container_name: social_scraper
+    image: social_scraper:0.0.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    command: yarn dev
+    ports:
+      - "4000:4000"
+    networks:
+      - social_scraper_network
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    restart: unless-stopped
+    env_file:
+      - .env.dev
+networks:
+  social_scraper_network:
+    driver: bridge
