@@ -34,9 +34,13 @@ export const getUserDetails = handle(async (req, res) => {
 	await page.goto(`https://www.tiktok.com/@${username}`);
 
 	if (
-		await page.waitForXPath(
-			'//*[contains(text(), "Couldn\'t find this account")]'
-		)
+		(await page.waitForXPath(
+			'//*[contains(text(), "Couldn\'t find this account")]',
+			{
+				visible: true,
+				timeout: 5000,
+			}
+		)) !== null
 	)
 		throw new AppError('0xE000001', 404);
 
