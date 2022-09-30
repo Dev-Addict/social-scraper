@@ -33,17 +33,6 @@ export const getUserDetails = handle(async (req, res) => {
 
 	await page.goto(`https://www.tiktok.com/@${username}`);
 
-	if (
-		(await page.waitForXPath(
-			'//*[contains(text(), "Couldn\'t find this account")]',
-			{
-				visible: true,
-				timeout: 5000,
-			}
-		)) !== null
-	)
-		throw new AppError('0xE000001', 404);
-
 	const followingElement = await page.waitForSelector(
 		'strong[title=Following]'
 	);
@@ -64,6 +53,9 @@ export const getUserDetails = handle(async (req, res) => {
 		likesElement
 	);
 
+	if (!followingText || !followersText || !likesText)
+		throw new AppError('0xE000001', 404);
+
 	await browser.close();
 
 	res.json({
@@ -71,11 +63,11 @@ export const getUserDetails = handle(async (req, res) => {
 		data: {
 			username,
 			followingText,
-			following: deformatNumber(followingText || ''),
+			following: deformatNumber(followingText),
 			followersText,
-			followers: deformatNumber(followersText || ''),
+			followers: deformatNumber(followersText),
 			likesText,
-			likes: deformatNumber(likesText || ''),
+			likes: deformatNumber(likesText),
 		},
 	});
 });
