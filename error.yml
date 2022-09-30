@@ -1,0 +1,4 @@
+0xE000000: tiktok get user details' param `username` is invalid.
+0xE000001: tiktok couldn't find the user.
+0xE000002: unknown error.
+0xE000003: not found.
